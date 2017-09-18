@@ -1,0 +1,30 @@
+body {
+background-color:#f2f2f2;
+color:#3D2910;
+font-family:monospace;
+letter-spacing: 0.05em;
+font-size: 1.2em;
+font-weight: bold;
+padding-left: 4.705882352941%;
+padding-right: 2.352941176471%;
+
+}
+
+h1{
+margin-top: 5%;
+font-size:2em;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+font-weight: bolder;
+}
+
+p{
+    margin-top: 5%;
+}
+
+#submit{
+    background-color:#3D2910;
+    color:#f2f2f2;
+    font-family: fantasy;
+    text-transform: uppercase;
+}
