@@ -10,9 +10,9 @@ submit.onclick=function(){
 	if(inputs[1].value =="false"){
 		num++;
 	}else{
-		hint2.innerText ="Hint: -2^3=-8; 2^3=8";
+		hint2.innerText ="Hint: -2^2=4; （-2）^2=-4";
 	}
-	if(inputs[2].value =="11"){
+	if(inputs[2].value =="9"){
 		num++;
 	}else{
 		hint3.innerText ="Hint: one dozen is 12 eggs";
