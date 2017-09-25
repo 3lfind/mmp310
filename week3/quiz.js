@@ -7,10 +7,10 @@ submit.onclick=function(){
 	}else{
 		hint1.innerText ="Hint: 12-5";
 	}
-	if(inputs[1].value =="false"){
+	if(inputs[1].value =="true"){
 		num++;
 	}else{
-		hint2.innerText ="Hint: -2^2=4; （-2）^2=-4";
+		hint2.innerText ="Hint: -2^3=8; （-2）^3=8";
 	}
 	if(inputs[2].value =="9"){
 		num++;
