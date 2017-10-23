@@ -16,9 +16,17 @@ h1{
 	letter-spacing: 0.08em;
 	font-family: sans-serif;
 }
-.list .delete{
-	float: right;
+.list{
+	padding:1em;
+	border: 2px solid #3D2910;
+	width: 50%;
+	
 }
+.list .delete{
+	float:right;
+}
+
+
 #submit{
 	color:#3D2910;
 	margin: 4% 0;
