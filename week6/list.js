@@ -11,8 +11,8 @@ window.addEventListener("load", function() {
 	});
 	
 	function addItem() {
-		var listItem = document.createElement("div");
-		var newItem = document.createElement("ul");
+		var listItem = document.createElement("li");
+		var newItem = document.createElement("p");
 		listItem.className = "list";
 		newItem.innerText = input.value;
 		newItem.className = "item";
