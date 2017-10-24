@@ -20,8 +20,6 @@ h1{
 	margin: 1em;
 	border: 1px solid #3D2910;
 	width: 50%;
-	list-style-type:decimal;
-
 }
 .item{
 	display: inline-block;
