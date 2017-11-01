@@ -13,7 +13,7 @@ var slides = [
 	},
 	{
 		img: "image/comic4.jpg",
-		label: "I am sorry! The number you dail is not in service, please check and dail again"
+		label: "I am sorry! The number you dail is not in service, please check and dail again."
 	}
 ];
 
