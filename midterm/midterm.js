@@ -66,14 +66,14 @@ $(document).ready(function() {
 							for (let i = 0; i < clickedCards.length; i++) {
 								clickedCards[i].img.addClass("match");
 								}
-                            if  (score == 6){
+                            if  (score == cards.length/2){
                                 $("#win").addClass( "winShow");
 							}
 						} else {
 							// not a match, hide the images
-							$card.children().delay(1000).fadeOut(400).hide(0);
+							$card.children().delay(1000).hide(0);
 							for (let i = 0; i < clickedCards.length; i++) {
-								clickedCards[i].img.delay(1000).fadeOut(400).hide(0);;
+								clickedCards[i].img.delay(1000).hide(0);
 							}
                          
 						}
