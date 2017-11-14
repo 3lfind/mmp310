@@ -2,19 +2,21 @@ $(document).ready(function() {
 	$('#query').on("keypress", function(event){
 		/* keyCode 13 is the enter key to submit query */
 		if (event.keyCode == 13) {
+			  var score = 0;
+                var attempt = 0;
 			var query = this.value;
 			var key = "uTtk10NFnmdtYP4f3URNps6BFeFqh1Jq";
 			var url = "https://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=" + key + "&limit=6";
 			$.getJSON(url, function(json) {
 				
 				/* memory game */
-				
+	
 				// need two copies of each image in a list
 				var cards = [];
 				
 				// place image into a grid
 				// obscure images
-					var $game = $('#game');
+				var $game = $('#game');
 				var matches = 2;
 				$("#direction").text("click any two cards to match");
 				for (let j = 0; j < matches; j++) {
@@ -36,16 +38,17 @@ $(document).ready(function() {
 				}
 					 
 				var clickedCards = [];
-                var score = 0;
-                var attempt = 0;
-				// each card/image needs clicks event
+              
 				$('.card').click(function() {
+					attempt++;
+					$('#attempt').text('Number of tries ' + attempt);
+                            
 					const $card = $(this);
-					// reveal images
-					$card.children().fadeToggle(1000);
-					$card.addClass("cardShow");	
+					// reveal image
+				   $card.children().show();
+					$card.addClass("cardShow");
 					// is there another image to compare
-					console.log(clickedCards.length, matches);
+					//console.log(clickedCards.length, matches);
 					if (clickedCards.length == matches - 1) {
 						// compare images
 						var allMatch = true;
@@ -56,33 +59,24 @@ $(document).ready(function() {
 						}
 						if (allMatch) {
 							// match, stay face up
-							console.log("this is a match");
-                          
-							// if all matches game is won
+							//console.log("this is a match");
                             score++;
-                            $('#score').text('Number of correct answers ' + score);
-                            
-                            if  (score == cards.length/2){
-                                $("#win").addClass( "winShow");
-                            }
-							for (let i = 0; i < clickedCards.length; i++) {
-                           clickedCards[i].img.addClass("match");
+							$('#score').text('Number of correct answers ' + score);
 							$card.children().addClass("match");
-								
+							for (let i = 0; i < clickedCards.length; i++) {
+								clickedCards[i].img.addClass("match");
+								}
+                            if  (score == 6){
+                                $("#win").addClass( "winShow");
 							}
-                            
 						} else {
 							// not a match, hide the images
-							$card.children().delay(1000).hide(0);
+							$card.children().delay(1000).fadeOut(400).hide(0);
 							for (let i = 0; i < clickedCards.length; i++) {
-								clickedCards[i].img.delay(1000).hide(0);
+								clickedCards[i].img.delay(1000).fadeOut(400).hide(0);;
 							}
-                            attempt++;
-                            $('#attempt').text('Number of tries ' + attempt)
-                            
+                         
 						}
-                       
-                        
 						// clear the current image
 						clickedCards = [];
 					} else {
