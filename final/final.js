@@ -1,49 +1,61 @@
-var wall= document.getElementById('wall');
-var context = wall.getContext('2d');
-context.strokeStyle="#BFBFBF";
-var me = true;
+var keyword = "room";
+var room= document.getElementById('room');
+var clearButton = document.getElementById('clear');
+var context = room.getContext('2d');
+context.strokeStyle ="#3D2910";
+context.lineWidth=5;
+var isDrawing = false;
+var x = 0;
+var y = 0;
 var background = new Image();
-background.src = "images/back.jpg";
-
+//load image from flickr
+    $(document).ready(function(){
+		var id="137355827@N07";
+		var set="72157690226925234";
+        $.getJSON("https://api.flickr.com/services/feeds/photoset.gne?nsid="+id+"&set="+ set+
+				  "&jsoncallback=?",
+        {
+			tag:keyword,
+            tagmode: "any",
+			format:"json"
+			
+        },
+        function(data) {
+            var random = Math.floor(Math.random() * data.items.length);
+            var image_src = data.items[random]['media']['m'].replace("_m", "_b");
+			background.src =image_src;
+    });
 background.onload = function(){
 	context.drawImage(background,0,0,800,800);
-	board();
+	
 }
-var board = function(){
-for(var i=0; i<25; i++){
-// 纵线
-	context.moveTo(25 + i*20, 25);
-	context.lineTo(25 + i*20,485);
-	context.stroke();
-//横线
-	context.moveTo(25, 25 +i*20);
-	context.lineTo(485, 25+ i*20);
-	context.stroke();
+//draw
+function draw(event) {
+  if (!isDrawing) {
+    return;
+  }
+  context.beginPath();
+  context.moveTo(x,y);
+  context.lineTo(event.offsetX, event.offsetY);
+  context.stroke();
+  x=event.offsetX;
+  y= event.offsetY;
 }
+
+room.addEventListener('mousemove', draw);
+room.addEventListener('mousedown', (event) => {
+  isDrawing = true;
+  x=event.offsetX;
+  y= event.offsetY;
+});
+room.addEventListener('mouseup', () => isDrawing = false );
+room.addEventListener('mouseout', () => isDrawing = false );
+
+//clear
+function clear() {
+  context.drawImage(background,0,0,800,800);
 }
-var onestep = function(i,j,me){
-	context.beginPath();
-	context.arc(25 + i*20,25+j*20,25, 0, 2*Math.PI);
-	context.closePath();
-	var gradient = context.createRadialGradient(25+i*20+2,25+j*20-2,25,25+i*20+2,25+j*20-2,0);//20半径
-	if(me){
-		gradient.addColorStop(0,"#A0A0A0");
-	gradient.addColorStop(1,"#636766");
-	}else{
-		gradient.addColorStop(0,"#D1D1D1");
-		gradient.addColorStop(1,"#F9F9F9");
-	}
-	context.fillStyle=gradient;
-	context.fill();
-}
-	 
-wall.onclick = function(event){
-		var x = event.offsetX;
-		var y = event.offsetY;
-		var i = Math.floor(x/20);
-		var j = Math.floor(y/20);
-		onestep(i,j, me);
-		me = !me;
-	}
+clearButton.addEventListener('click',clear);
+});
 
 
